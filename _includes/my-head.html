@@ -3,7 +3,7 @@ Code used for embedding Gumroad on the Hydejack Site.
 Left here for reference, feel free to delete.
 -->
 <link rel="dns-prefetch" href="https://assets.gumroad.com">
-<link rel="dns-prefetch" href="https://{{ disqus }}.disqus.com/embed.js" id="_hrefDisqus">
+<link rel="dns-prefetch" href="https://{{ disqus }}.disqus.com" id="_hrefDisqus">
 <script>window.GET_CLAPS_API = 'https://worker.getclaps.dev'</script>
 <script type="module">
   const ppiData = window._ppiData = fetch('https://hydejack-ppi.qwtel.workers.dev', { mode: 'cors'}).then(res => res.json()).catch(() => ({}));
