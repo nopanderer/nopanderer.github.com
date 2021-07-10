@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "[쿠버네티스 기초] kube api server"
+title: "[쿠버네티스 기초 03] kube api server"
 categories: kubernetes
 ---
 

@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "[쿠버네티스 기초] kube controller manager"
+title: "[쿠버네티스 기초 04] kube controller manager"
 categories: kubernetes
 ---
 
