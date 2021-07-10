@@ -50,6 +50,8 @@ author:
 
 # Add links to the sidebar.
 menu:
+  - title:             Linux
+    url:               /linux/
   - title:             ML
     url:               /ml/
   - title:             Kubernetes
