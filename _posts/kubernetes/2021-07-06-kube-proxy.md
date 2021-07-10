@@ -1,6 +1,6 @@
 ---
 layout: post
-title: kube proxy
+title: [쿠버네티스 기초] kube proxy
 categories: kubernetes
 ---
 
