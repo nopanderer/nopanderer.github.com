@@ -1,6 +1,6 @@
 ---
 layout: post
-title: [쿠버네티스 기초] kube scheduler
+title: "[쿠버네티스 기초] kube scheduler"
 categories: kubernetes
 ---
 
