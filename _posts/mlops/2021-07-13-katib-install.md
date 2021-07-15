@@ -59,6 +59,8 @@ make deploy
 kubectl get pods -n kubeflow
 ```
 
+![katib-install](/assets/img/katib-install.png)
+
 ## 삭제
 
 ```
