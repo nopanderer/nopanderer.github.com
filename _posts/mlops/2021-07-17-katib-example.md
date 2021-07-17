@@ -278,7 +278,7 @@ kubectl port-forward svc/katib-ui -n kubeflow 8202:80
 
 ![katib-trial](/assets/img/katib-trial.png)
 
-## 총평
+## 정리
 
 * 하이퍼 파라미터 튜닝을 할 때 보통은 스크립트를 통해 하는데, Katib 를 쓰면 `Ray` 처럼 병렬 수행이 가능하고 이에 대한 시각화도 잘 되어 있어서 좋습니다.
 * 아직은 편의성 부분이 많이 부족해보이네요. 대시보드에서 배포하는 메뉴가 있긴 한데, 직관적이지 못한 것 같습니다.
