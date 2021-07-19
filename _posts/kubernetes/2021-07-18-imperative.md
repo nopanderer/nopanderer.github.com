@@ -63,14 +63,11 @@ Code: Git Repo - X
 
 ## kubectl apply 동작 과정
 
-- 로컬에 있는 yaml 파일을 가지고 오브젝트를 생성. 이와 동시에 로컬 파일과 비슷하게 생긴(상태 정보가 추가된) live configuration file 을 쿠버내에 생성
+- 로컬에 있는 yaml 파일을 가지고 오브젝트를 생성. 이와 동시에 로컬 파일과 비슷하게 생긴(상태 정보가 추가된) live object configuration 을 쿠버내에 생성
 - 또한 json 파일로 변환된 last applied configuration 파일도 저장됨
-- 이 세가지 파일(로컬 yaml, last applied configuration, live configuration file) 이 비교되면서 실제 오브젝트에 어떤 변화를 줄지 정해짐
-- 예를 들어 로컬 파일에서 이미지를 `nginx:1.19` 로 변경하고 apply 커맨드를 날리면, 먼저 쿠버 클러스터에 있는 live configuration 파일과 비교되어 차이점이 발견되고 업데이트 됨
+- 이 세가지 파일(로컬 yaml, last applied configuration, live object configuration) 이 비교되면서 실제 오브젝트에 어떤 변화를 줄지 정해짐
+- 예를 들어 로컬 파일에서 이미지를 `nginx:1.19` 로 변경하고 apply 커맨드를 날리면, 먼저 쿠버 클러스터에 있는 live object configuration 과 비교되어 차이점이 발견되고 업데이트 됨
 - last applied 파일도 이에따라 최신 값으로 업데이트 됨
-- last applied 파일이 존재하는 이유는 
-
-
-
-
-
+- local file: 디스크에 있는 파일
+- live object configuration: 클러스터 메모리에 있는 정보
+- last applied configuration 은 apply 커맨드를 사용했을때만 annotation 에 기록이 남음
