@@ -7,7 +7,7 @@ categories: kubernetes
 이 포스팅은 `Udemy`의 `Certified Kubernetes Administrator with Practice Tests` 강의를 정리한 내용입니다.
 {:.note}
 
-Service 에 대해 알아봅시다.
+Imperative 와 declarative 에 대해 알아봅시다.
 
 0. this unordered seed list will be replaced by toc as unordered list
 {:toc}
@@ -36,11 +36,13 @@ Service 에 대해 알아봅시다.
 
 예시
 
+```
 VM Name: web-server
 Database: nginx
 Port: 8080
 Path: /var/www/nginx
 Code: Git Repo - X
+```
 
 ## Imperative vs. Declarative
 
