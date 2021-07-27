@@ -110,7 +110,7 @@ metadata:
 - 위 그림처럼 node1에 `taint=blue`와 같이 taint 를 가했을 때, 이에 대한 toleration이 없는 pod 들(A, B, C)은 스케줄링 되지 않음
 - pod D만 node1에 배치하고 싶으면, `taint=blue` 에 대한 toleration 을 주면 됨
 - 헷갈리면 안되는 점은 pod D 가 반드시 node1에 배치되는게 아님. node01 에 배치될 수 있는 toleration 을 가진 것 뿐이기 때문에 다른 노드에 배치될 수도 있음
-- 특정 노드에 배포하고 싶은 경우에는 `node affinity`를 사용하면 됨
+- 특정 노드에 배포하고 싶은 경우에는 `nodeSelector`를 사용하면 됨
 - 정리하면, `taint`는 node에 `toleration`은 pod에
 
 ### taint 하기
@@ -224,3 +224,107 @@ spec:
 - 현재는 두 가지 타입만 존재
   - requiredDuringSchedulingIgnoredDuringExecution: 생성 당시 반드시 조건에 맞아야 됨. 만들어진 이후에는 label 신경 안씀
   - preferredDuringSchedulingIgnoredDuringExecution: 조건에 안 맞는 노드가 있어도 띄울 수 있음. 만들어진 이후에는 label 신경 안씀
+
+## Resource requirements and limits
+
+- 각 pod 마다 실행을 위해 리소스 자원을 필요로 함(cpu, memory 등)
+- 스케줄러가 이를 고려해서 노드에 스케줄링 하게 됨
+- 모든 노드가 해당 pod 의 리소스를 수용할 수 없으면, 그 pod 는 `Pending` 상태가 됨
+
+### Resource Requests
+
+- 각 pod 는 디폴트로 0.5 cpu, 256Mi 메모리를 요구함 
+- 이를 수정하려면 yaml 파일에서 직접 명시하면 됨
+
+```yaml
+...
+spec:
+  containers:
+    ...
+    resources:
+      requests:
+        cpu: 1
+        memory: "1Gi"
+```
+
+- cpu 는 0.1 혹은 1m 이 최소
+- cpu 1 = 1 vCPU (스레드 1개)
+- 메모리의 경우, 1 M (Megabyte, 1,000,000 bytes)와 1 Mi (Mebibyte, 1,048,576 bytes) 는 다름
+
+### Resource Limits
+
+- 도커에서는 컨테이너에 리소스 제한이 없음 (호스트의 모든 자원을 잠식할 수도 있음)
+- 쿠버에서는 컨테이너마다 디폴트로 1 vCPU, 512Mi 로 제한함
+
+```yaml
+...
+spec:
+  containers:
+    ...
+    resources:
+      limits:
+        cpu: 2
+        memory: "2Gi"
+```
+
+- cpu 를 넘게 되면 쓰로틀링을 걸어서 limit 이상 사용할 수 없음
+- 메모리는 limit 을 넘을 수 있음. 계속 넘게 되면 해당 pod 는 종료됨
+- namespace에 `LimitRange` 오브젝트를 만들어서 디폴트로 지정할 limit과 request를 세팅할 수도 있음
+
+```yaml
+apiVersion: v1
+kind: LimitRange
+metadata:
+  name: mem-limit-range
+spec:
+  limits:
+  - default:
+      memory: 512Mi
+    defaultRequest:
+      memory: 256Mi
+    type: Container
+```
+
+## Multiple Schedulers
+
+- 오브젝트를 생성할 때 커스텀 스케줄러를 통해 노드에 배치할 수도 있음
+- 따라서 쿠버네티스 내에 디폴트 스케줄러 뿐만 아니라 커스텀 스케줄러들도 같이 존재할 수 있음
+
+### 추가적인 스케줄러 배포
+
+- 프로세스 조회를 통해 옵션 정보를 확인할 수 있음
+
+```
+ps -ef | grep kube-scheduler
+```
+
+- `--scheduler-name` 옵션을 주지 않으면 default-scheduler 라는 이름으로 생성됨
+- 추가적인 스케줄러를 생성하고 싶으면, 기존 kube-scheduler 바이너리 파일이나 자체적으로 만든 것을 통해 이름만 달리해서 생성하면 됨. 이 이름을 활용해서 pod definition 파일에서 스케줄러를 설정함
+
+### kubeadm 으로 추가적인 스케줄러 배포
+
+- `/etc/kubernetes/manifests` 하위에 kube-scheduler.yaml 파일을 그대로 복사해서 `--scheduler-name` 이름만 바꿔서 `kubectl`로 띄우면 됨
+- `--leader-elect` 옵션은 클러스터 내에 여러 개의 스케줄러가 존재할 때(HA 구성 같은 경우), 하나의 스케줄러만이 active 상태가 될 수 있음
+- 마스터가 여러 개 인 경우 추가적으로 `--lock-object-name` 이라는 옵션을 추가해서 디폴트 스케줄러와 구분해서 리더를 선출함
+
+### 커스텀 스케줄러 사용해서 오브젝트 생성
+
+```yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx
+spec:
+  containers:
+  - name: nginx
+    image: nginx
+  schedulerName: my-custom-scheduler
+```
+
+### 이벤트 확인
+
+이벤트 조회를 통해 어떤 스케줄러가 사용되었는지 확인 가능
+
+```
+kubectl get events
+```
