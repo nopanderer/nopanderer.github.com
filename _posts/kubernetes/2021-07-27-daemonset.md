@@ -7,7 +7,7 @@ categories: kubernetes
 이 포스팅은 `Udemy`의 `Certified Kubernetes Administrator with Practice Tests` 강의를 정리한 내용입니다.
 {:.note}
 
-Daemonsets 에 대해 알아봅시다.
+Daemonset 에 대해 알아봅시다.
 
 0. this unordered seed list will be replaced by toc as unordered list
 {:toc}
