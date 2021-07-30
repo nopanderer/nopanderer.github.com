@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "쿠버네티스 라이프사이클"
+title: "쿠버네티스 라이프사이클"
 categories: kubernetes
 ---
 
