@@ -50,6 +50,10 @@ author:
 
 # Add links to the sidebar.
 menu:
+  - title:             Algorithm
+    url:               /algorithm/
+  - title:             Network
+    url:               /network/
   - title:             Linux
     url:               /linux/
   - title:             ML
