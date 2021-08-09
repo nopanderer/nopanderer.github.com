@@ -55,3 +55,139 @@ kubectl cordon node01
     - MINOR는 기능 추가 등
     - PATCH는 버그 수정 등
 - ETCD와 CoreDNS 는 따로 독립된 버전으로 개발
+
+## 클러스터 업그레이드
+
+- kube api server 가 핵심 컴포넌트이기 때문에 다른 컴포넌트들은 이것보다 높은 버전을 사용할 수 없음
+- kube api server 버전이 X(v1.10)라면,
+    - controller manager 와 kube scheduler 버전은 최소 X-1(v1.9 or v1.10)
+    - kubelet과 kube-proxy는 최소 X-2(v1.8, v1.9, or v1.10)
+    - kubelet은 X-1 ~ X+1(v1.9, v1.10, or v1.11)
+- 쿠버네티스는 최신 버전에서 두 단계 아래까지만 지원함
+    - 예를 들어 현재 최신 버전이 v1.13 이면 v1.12와 v1.11까지만 지원
+- 업그레이드는 한 버전씩 업그레이드 하는 것을 권장
+    - v1.10에서 v1.13으로가 아닌 v1.11로
+
+### kubeadm 업그레이드 방법
+
+- 마스터 노드 먼저 업그레이드 후 워커 노드 업그레이드
+- 마스터 노드 업그레이드
+    - 마스터 노드는 잠시 down
+    - 워커 노드나 워커 노드에 떠 있는 pod 들에 영향이 가진 않음
+    - 컨트롤 플레인이 제역할을 하지 못하기 때문에 replicaset 으로 떠 있는 pod가 죽는 경우 되살리지 못함
+- 워커 노드 업그레이드
+    - 전체 노드 한꺼번에 업그레이드 혹은 하나씩 업그레이드
+    - 하나씩 업그레이드 하는 경우 해당 노드의 pod 들이 다른 노드로 가서 뜨기 때문에 downtime 이 없음
+    - 아니면 업그레이드 된 버전의 노드를 추가하고 예전 버전의 노드는 삭제하는 식으로 업그레이드 할 수도 있음
+
+업그레이드를 위한 명령어
+
+```
+kubeadm upgrade plan
+```
+
+- 현재 컴포넌트 버전과 최신 버전을 알려줌
+- 수동으로 업그레이드 해야 할 kubelet 버전도 알려줌
+- 업그레이드를 실행할 명령어도 알려줌
+- 컴포넌트 업그레이드 전에 kubeadm 도 업그레이드 해줘야함
+
+### 업그레이드 과정(v1.11 -> v1.12)
+
+kubeadm 업그레이드
+
+```
+apt install -y kubeadm=1.12.0-00
+```
+
+컴포넌트 업그레이드
+
+```
+kubeadm upgrade apply v1.12.0
+```
+
+kubectl 로 노드 버전을 체크해도 예전 버전인 것을 알 수 있는데 이는 과거에 노드 등록할 때 api server 버전이기 때문
+
+```
+kubectl get nodes
+```
+
+마스터 노드 kubelet 업그레이드
+
+```
+apt install -y kubelet=1.12.0-00
+
+systemctl restart kubelet
+```
+
+워커 노드 한 개씩 업그레이드
+
+```
+# move pod
+kubectl drain node01
+```
+
+```
+apt install -y kubeadm=1.12.0-00
+apt install -y kubelet=1.12.0-00
+kubeadm upgrade node
+systemctl restart kubelet
+```
+
+```
+kubectl uncordon node01
+```
+
+다른 워커 노드에서도 같은 작업 반복
+
+## 백업과 복구
+
+### 백업 대상
+
+- 각종 오브젝트
+- etcd 클러스터
+- Persistent Volume
+
+### 오브젝트 설정 정보 저장 (pod, deploy, svc 만 가능)
+
+```
+kubectl get all -A -o yaml > all-deploy-service.yaml
+```
+
+### etcd 백업
+
+- etcd.service 를 살펴보면 `--data-dir` 옵션을 볼 수 있음
+- 여기에 저장된 데이터를 이용해 백업이 가능
+- 혹은 `etcdctl` 를 이용해 스냅샷을 얻을 수 있음
+- `etcdctl snapshot save` 시 반드시 다음 옵션들을 주어야 함
+    - `--endpoints`: etcd 클러스터 (etcd 가 실행 중인 노드에서 실행할거면 생략해도 됨)
+    - `--cacert`
+    - `--cert`: etcd 서버용
+    - `--key`
+
+```
+ETCDCTL_API=3 etcdctl snapshot save snapshot.db
+```
+
+복구 (스냅샷)
+
+```
+service kubeapi-server stop
+```
+
+```
+ETCDCTL_API=3 etcdctl snapshot restore snapshot.db --data-dir /var/lib/etcd-from-backup
+```
+
+```
+systemctl daemon-reload
+service kubeapi-server restart
+```
+
+바뀐 data-dir 로 변경하기
+
+```
+vi /etc/kubernetes/manifest/etcd.yaml
+```
+
+volumes.hostPath 에서 `/var/lib/etcd-from-backup`으로 변경
+
