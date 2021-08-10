@@ -54,6 +54,8 @@ menu:
     url:               /algorithm/
   - title:             Network
     url:               /network/
+  - title:             Database
+    url:               /database/
   - title:             Linux
     url:               /linux/
   - title:             ML
