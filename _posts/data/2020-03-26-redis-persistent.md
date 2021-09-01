@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "[Redis] 영속성 AOF, RDB"
-categories: database
+categories: data
 ---
 
 1. this unordered seed list will be replaced by toc as unordered list
