@@ -55,7 +55,7 @@ class ExtendedPractice(Practice):
 		self._b = 22
 		self.__c == 52
 t2 = ExtendedPractice()
-t2.__b # AttibuteError
+t2.__b # AttributeError
 
 dir(t2)
 ```
@@ -79,4 +79,4 @@ for _ in range(10):
 ## 참고
 
 - <https://blog.naver.com/PostView.naver?isHttpsRedirect=true&blogId=reisei11&logNo=221749496623>
-- <tibetsandfox>
+- <https://tibetsandfox.tistory.com/21>
