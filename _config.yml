@@ -54,6 +54,8 @@ menu:
     url:               /python/
   - title:             Network
     url:               /network/
+  - title:             OS
+    url:               /os/
   - title:             Data
     url:               /data/
   - title:             Linux
