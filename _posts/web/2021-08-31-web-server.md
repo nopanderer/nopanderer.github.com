@@ -1,7 +1,7 @@
 ---
 layout: post
-title: "[네트워크] 웹서버, WSGI"
-categories: network
+title: "[Web] 웹서버, WSGI"
+categories: web
 ---
 
 1. this unordered seed list will be replaced by toc as unordered list

@@ -52,6 +52,10 @@ author:
 menu:
   - title:             Python
     url:               /python/
+  - title:             Dev
+    url:               /dev/
+  - title:             Web
+    url:               /web/
   - title:             Network
     url:               /network/
   - title:             OS
