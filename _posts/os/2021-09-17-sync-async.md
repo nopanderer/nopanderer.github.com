@@ -1,55 +1,43 @@
 ---
 layout: post
-title: "[OS] Thread Safe"
+title: "[OS] Sync, Async, Blocking, NonBlocking"
 categories: os
 ---
 
 1. this unordered seed list will be replaced by toc as unordered list
 {:toc}
 
-## Thread Safe
+## 서두
 
-- Thread Safe 하다는 것은 스레드들이 race condition 을 발생시키지 않으면서 각자의 일을 수행한다는 뜻
-- 좀 더 구체적으로는 멀티 스레드 프로그래밍에서 어떤 함수, 변수, 혹은 객체가 여러 스레드로부터 동시에 접근이 이루어져도 프로그램의 실행에 문제가 없음을 뜻함
-	- 파이썬에서 `requests.Session()` 객체는 thread-safe 하지 않아서 스레드 별로 별도의 객체를 만들어서 써야함
+![sync async](/assets/img/sync-async.png)
 
-## Thread Safe 를 지키는 방법
+동기 처리와 비동기 처리에 대해서 대부분의 사람들은 어렴풋이라도 알고 있다. 동기 처리는 요청을 하고 응답을 받을 때까지 대기하는 것이고, 비동기 처리는 요청을 하고 응답을 받을 때까지 다른 일을 하는 것... 그래서 `동기=Blocking`, `비동기=NonBlocking` 이라고 생각하기 쉬운데, 위 표를 보면 마치 상반되는 것들이 묶여있는 것을 볼 수 있다. 대체 asynchronous blocking 은 뭘까? synchronous nonblocking 은? 오늘 이들 간에 어떤 차이점이 있는지 알아보도록 한다.
 
-### Mutual exclusion (mutex)
+## Synchronous, Asynchronous
 
-- 공유되는 메모리의 데이터를 여러 스레드가 동시에 사용할 수 없도록 잠궈버림
-- 일반적으로 이 방법이 자주 사용됨
-- 파이썬에서는 `threading.Lock`
+- Synchronous/Asynchronous 는 호출되는 함수의 작업 완료 여부를 누가 신경쓰느냐가 관심사
+	- asynchronous: 호출되는 함수에게 콜백을 전달하고, 호출하는 함수는 이를 신경쓰지 않음
+	- synchronous: 호출하는 함수가 호출되는 함수의 작업 완료 후 리턴을 기다리거나, 콜백을 전달하고 바로 리턴을 받더라도 작업 완료 여부를 계속 확인하면서 신경씀
 
-### Re-entrancy
+## Blocking, NonBlocking
 
-- 어떤 함수가 한 스레드에 의해 실행 중일 때 스케줄링되어 다른 스레드가 그 함수를 호출하더라도 결과가 각각 올바르게 나와야 함
+- Blocking/NonBlocking 은 호출되는 함수가 바로 리턴하느냐 마느냐가 관심사
+	- Blocking: 호출된 함수가 자신의 작업을 모두 마칠 때까지 호출한 함수에게 제어권을 넘겨주지 않고 대기하게 만듦
+	- NonBlocking: 호출된 함수가 호출한 함수에게 바로 제어권을 넘겨주고, 호출한 함수가 다른 일을 할 수 있도록 기회를 줌
 
-### Thead-local storage
+## 헷갈리는 조합 살펴보기
 
-- 공유 자원을 최대한 줄여 각각의 스레드에서만 접근 가능한 저장소들을 사용하여 동시 접근을 막음
-- 파이썬에서는 `threading.local()` 을 통해 각 스레드에 특정 객체를 만듦
+### NonBlocking-Sync
 
-```python
-import requests
-import threading
+- 호출되는 함수는 바로 리턴하고, 호출하는 함수는 작업 완료 여부를 계속 체크
+- 폴링 방법이 대표적인 예
 
-thread_local = threading.local()
+### Blocking-Async
 
-def get_session():
-	if not hasattr(thread_local, "session"):
-		thread_local.session = requests.Session()
-	return thread_local.session
-```
-
-- 위 코드에서처럼 전역적으로 하나만 만들어놓으면 내부적으로 각각의 스레드마다 서로 다른 데이터에 접근하도록 처리됨
-
-### Atomic operations
-
-- 공유 자원 변경 시 "원자적"으로 정의된 접근 방법을 이용
-- 파이썬에서 `+=` 같은 연산은 원자적이라고 보기 어려움 (`+` 후에 `=` 연산을 하기 때문)
+- 호출되는 함수가 바로 리턴하지 않고, 호출하는 함수는 작업 완료 여부를 신경쓰지 않음
+- 이거는 다시 봐도 굉장히 이상해보임
+- 실제로 이 방식이 필요한 경우는 없고, nonblocking-async 를 쓰다가 본의 아니게 이 방식으로 동작한다고 함 (db 드라이버가 blocking 방식인 경우가 많다고 함)
 
 ## 참고
 
-- <https://dgkim5360.tistory.com/entry/understanding-the-global-interpreter-lock-of-cpython>
-- <https://gompangs.tistory.com/entry/OS-Thread-Safe%EB%9E%80>
+- <http://homoefficio.github.io/2017/02/19/Blocking-NonBlocking-Synchronous-Asynchronous/>
