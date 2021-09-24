@@ -11,7 +11,7 @@ categories: os
 
 - Thread Safe 하다는 것은 스레드들이 race condition 을 발생시키지 않으면서 각자의 일을 수행한다는 뜻
 - 좀 더 구체적으로는 멀티 스레드 프로그래밍에서 어떤 함수, 변수, 혹은 객체가 여러 스레드로부터 동시에 접근이 이루어져도 프로그램의 실행에 문제가 없음을 뜻함
-	- 파이썬에서 `requests.Session()` 객체는 thread-safe 하지 않아서 스레드 별로 별도의 객체를 만들어서 써야함
+    - 파이썬에서 `requests.Session()` 객체는 thread-safe 하지 않아서 스레드 별로 별도의 객체를 만들어서 써야함
 
 ## Thread Safe 를 지키는 방법
 
@@ -37,9 +37,9 @@ import threading
 thread_local = threading.local()
 
 def get_session():
-	if not hasattr(thread_local, "session"):
-		thread_local.session = requests.Session()
-	return thread_local.session
+    if not hasattr(thread_local, "session"):
+        thread_local.session = requests.Session()
+    return thread_local.session
 ```
 
 - 위 코드에서처럼 전역적으로 하나만 만들어놓으면 내부적으로 각각의 스레드마다 서로 다른 데이터에 접근하도록 처리됨
