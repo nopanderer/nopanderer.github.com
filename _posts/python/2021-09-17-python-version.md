@@ -51,8 +51,8 @@ asyncio.run(do_async())
 
 ```python
 def divide(e, f):
-	breakpoint()
-	return f / e
+    breakpoint()
+    return f / e
 ```
 
 ## Python 3.8
@@ -67,7 +67,7 @@ def divide(e, f):
 a = [1, 2, 3, 4]
 n = len(a)
 if n > 5:
-	print(f"List is too long {n} elements")
+    print(f"List is too long {n} elements")
 ```
 
 3.8 부터는 아래와 같이 n을 조건문 안에서 선언하고 값을 대입할 수 있음
@@ -75,5 +75,5 @@ if n > 5:
 ```python
 a = [1, 2, 3, 4]
 if (n := len(a)) > 5:
-	print(f"List is too long {n} elements")
+    print(f"List is too long {n} elements")
 ```

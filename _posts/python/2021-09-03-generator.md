@@ -28,15 +28,15 @@ frozenset({'__len__', '__getitem__'})
 - `list`, `tuple`, `set`, `dict` 모두 `Collection`을 상속받음
 - 여기서 다루는 `Iterable`, `Iterator`, `Generator` 모두 ABC에 정의되어 있는 추상 클래스임
 
-## Iteratable, Iterator
+## Iterable, Iterator
 
 ### Iterable
 
 - `collections.abc`에 정의되어 있는 추상 클래스
 - 순회가능한 모든 객체. for 문에서 `in` 키워드에 올 수 있는 것
-	- list, tuple, set, dict, range, 문자열, 파일 등
-- 직접 Iterable 를 상속받기 위해서는 `__iter__` 추상 메소드를 구현해야 함
-	- `__iter__` 메소드는 호출될 때마다 새로운 **Iterator**를 반환해야 함
+    - list, tuple, set, dict, range, 문자열, 파일 등
+- 직접 iterable 를 상속받기 위해서는 `__iter__` 추상 메소드를 구현해야 함
+    - `__iter__` 메소드는 호출될 때마다 새로운 iterator 를 반환해야 함
 
 ### Iterator
 
@@ -52,15 +52,15 @@ assert iter(l) != iter(l)
 ```
 
 - 어떤 클래스가 iterator 이기 위한 조건
-	- `__iter__` 를 구현하되, 자기 자신을 반환
-	- `__next__`를 구현해서 iterator 를 인자로 주었을 때 다음에 반환할 값을 정의
-	- iterator가 더이상 반환할 값이 없는 경우 StopIteration 예외를 일으킴
+    - `__iter__` 를 구현하되, 자기 자신을 반환
+    - `__next__`를 구현해서 iterator 를 인자로 주었을 때 다음에 반환할 값을 정의
+    - iterator가 더이상 반환할 값이 없는 경우 StopIteration 예외를 일으킴
 
 ### 파이썬에서 `for` 문 동작 과정
 
 ```python
 for n in 1,2,3,4,5:
-	print(n)
+    print(n)
 ```
 
 - for 뒤에 오는 튜플은 iterable
@@ -71,7 +71,7 @@ for n in 1,2,3,4,5:
 ## Generator
 
 - iterator 를 상속받음(상속관계: generator -> iterator -> iterable)
-- iterable, iterator 기능을 만들되, 생성 문법을 단순화한 것
+- iterator 기능을 만들되, 생성 문법을 단순화한 것
 - 이것 역시 `collections.abc`에 정의된 추상 클래스
 
 ### 생성 방법 1. yield
@@ -80,10 +80,10 @@ for n in 1,2,3,4,5:
 from random import randint
 
 def random_number_generator(n):
-	count = 0
-	while count < n:
-		yield randint(1, 100):
-		count += 1
+    count = 0
+    while count < n:
+        yield randint(1, 100):
+        count += 1
 ```
 
 다음과 같은 특징이 있음
@@ -103,7 +103,7 @@ from random import randint
 g = (randint(1, 100) for _ in range(5))
 
 for n in g:
-	print(n)
+    print(n)
 
 96
 34

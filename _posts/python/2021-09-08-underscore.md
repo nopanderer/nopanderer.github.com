@@ -38,26 +38,23 @@ class_ = "123"
 ### 이중 밑줄 접두사: `__var`
 
 - 네임 맹글링(name mangling)으로 인터프리터가 해당 속성 이름을 변경(mangling)
-	- 1) 클래스 속성값을 외부에서 접근할 수 없도록
-	- 2) 서브클래스에서 부모클래스의 속성을 오버라이딩하지 못하게 하기 위해 사용
+    - 1) 클래스 속성값을 외부에서 접근할 수 없도록
+    - 2) 서브클래스에서 부모클래스의 속성을 오버라이딩하지 못하게 하기 위해 사용
 
 ```python
 class Practice:
-	def __init__(self):
-		self.a = 11
-		self._b = 12
-		self.__c == 42
+    def __init__(self):
+        self.a = 11
+        self._b = 12
+        self.__c == 42
 
 class ExtendedPractice(Practice):
-	def __init__(self):
-		super().__init__()
-		self.a = 22
-		self._b = 22
-		self.__c == 52
-t2 = ExtendedPractice()
-t2.__b # AttributeError
-
-dir(t2)
+    def __init__(self):
+        super().__init__()
+        self.a = 22
+        self._b = 22
+        self.__c == 52
+t2 = ExtendedPractice() # AttributeError
 ```
 
 ### 이중 밑줄 접두사와 접미사: `__var__`
@@ -73,7 +70,10 @@ a, _, c = 1, 2, 3
 
 # 루프만 돌리고 싶음
 for _ in range(10):
-	print("Hello World")
+    print("Hello World")
+
+# 큰 숫자 자릿수 구분
+large_num = 1_000_000_000
 ```
 
 ## 참고

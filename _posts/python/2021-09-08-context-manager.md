@@ -14,7 +14,7 @@ categories: python
 
 ```python
 with open('some_file', 'w') as opened_file:
-	opened_file.write('Hola')
+    opened_file.write('Hola')
 ```
 
 는 다음과 같은 역할
@@ -22,9 +22,9 @@ with open('some_file', 'w') as opened_file:
 ```python
 file = open('some_file', 'w')
 try:
-	file.write('Hola')
+    file.write('Hola')
 finally:
-	file.close()
+    file.close()
 ```
 
 ## 참고
