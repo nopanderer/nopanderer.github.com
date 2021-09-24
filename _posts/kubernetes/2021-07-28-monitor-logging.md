@@ -9,7 +9,7 @@ categories: kubernetes
 
 쿠버네티스 모니터링과 로깅 에 대해 알아봅시다.
 
-0. this unordered seed list will be replaced by toc as unordered list
+* this unordered seed list will be replaced by toc as unordered list
 {:toc}
 
 ## 모니터링

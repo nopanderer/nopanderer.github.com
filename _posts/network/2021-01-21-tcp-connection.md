@@ -4,7 +4,7 @@ title: "[네트워크] TCP 연결 설정"
 categories: network
 ---
 
-0. this unordered seed list will be replaced by toc as unordered list
+* this unordered seed list will be replaced by toc as unordered list
 {:toc}
 
 ## TCP 연결 설정 과정 (3-way handshaking)

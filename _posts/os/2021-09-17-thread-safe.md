@@ -4,7 +4,7 @@ title: "[OS] Thread Safe"
 categories: os
 ---
 
-1. this unordered seed list will be replaced by toc as unordered list
+* this unordered seed list will be replaced by toc as unordered list
 {:toc}
 
 ## Thread Safe

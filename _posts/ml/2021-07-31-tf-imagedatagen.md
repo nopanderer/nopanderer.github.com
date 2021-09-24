@@ -6,7 +6,7 @@ categories: ml
 
 텐서플로우 ImageDataGenerator 에 대해 알아봅시다.
 
-0. this unordered seed list will be replaced by toc as unordered list
+* this unordered seed list will be replaced by toc as unordered list
 {:toc}
 
 ## 실제 이미지 데이터 전처리

@@ -6,7 +6,7 @@ categories: mlops
 
 Katib 를 이용해서 하이퍼 파라미터 튜닝을 합니다.
 
-0. this unordered seed list will be replaced by toc as unordered list
+* this unordered seed list will be replaced by toc as unordered list
 {:toc}
 
 ## 학습 코드 작성하기

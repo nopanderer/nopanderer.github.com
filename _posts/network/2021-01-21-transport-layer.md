@@ -4,7 +4,7 @@ title: "[네트워크] 전송 계층 Transport Layer"
 categories: network
 ---
 
-0. this unordered seed list will be replaced by toc as unordered list
+* this unordered seed list will be replaced by toc as unordered list
 {:toc}
 
 ## 데이터 단위

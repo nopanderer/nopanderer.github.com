@@ -6,7 +6,7 @@ categories: ml
 
 텐서플로우 로 Transfer Learning 을 구현합니다.
 
-0. this unordered seed list will be replaced by toc as unordered list
+* this unordered seed list will be replaced by toc as unordered list
 {:toc}
 
 ## Transfer Learning 이란

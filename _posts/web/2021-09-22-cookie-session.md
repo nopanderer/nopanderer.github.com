@@ -4,7 +4,7 @@ title: "[Web] 쿠키와 세션"
 categories: web
 ---
 
-1. this unordered seed list will be replaced by toc as unordered list
+* this unordered seed list will be replaced by toc as unordered list
 {:toc}
 
 ## 쿠키, 세션 등장 배경
@@ -22,7 +22,6 @@ categories: web
 - 누구나 볼 수 있기 때문에 보안성이 낮음
 - 통신 시 HTTP 헤더에 포함됨
 - 사용자 인증이 유효한 시간을 명시할 수 있음. 유효 시간이 정해지면 브라우저가 종료되어도 인증이 유지됨
-- 쿠키는 클라이언트의 상태 정보를 로컬에 저장했다가 참조함
 - Response Header에 Set-Cookie 속성을 사용하면 클라이언트에 쿠키를 만들 수 있음
 - 사용자가 따로 요청하지 않아도 브라우저가 Request 시 Request Header에 쿠키를 넣어서 자동으로 서버에 전송함
 

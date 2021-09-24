@@ -9,7 +9,7 @@ categories: kubernetes
 
 Static Pod 에 대해 알아봅시다.
 
-0. this unordered seed list will be replaced by toc as unordered list
+* this unordered seed list will be replaced by toc as unordered list
 {:toc}
 
 ## 마스터 플레인없이 Kubelet 만 있다면 pod 를 띄울 수 있을까?

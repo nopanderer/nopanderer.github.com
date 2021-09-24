@@ -4,7 +4,7 @@ title: "[Redis] 영속성 AOF, RDB"
 categories: data
 ---
 
-1. this unordered seed list will be replaced by toc as unordered list
+* this unordered seed list will be replaced by toc as unordered list
 {:toc}
 
 ## AOF (Append Only File)

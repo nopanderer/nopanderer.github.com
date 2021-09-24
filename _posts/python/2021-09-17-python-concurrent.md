@@ -4,7 +4,7 @@ title: "[Python] 동시성 프로그래밍"
 categories: python
 ---
 
-1. this unordered seed list will be replaced by toc as unordered list
+* this unordered seed list will be replaced by toc as unordered list
 {:toc}
 
 ## 동시성과 병렬성

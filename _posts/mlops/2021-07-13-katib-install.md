@@ -6,7 +6,7 @@ categories: mlops
 
 Katib 를 설치합시다.
 
-0. this unordered seed list will be replaced by toc as unordered list
+* this unordered seed list will be replaced by toc as unordered list
 {:toc}
 
 ## 필요 사항

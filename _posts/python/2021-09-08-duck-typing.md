@@ -4,7 +4,7 @@ title: "[Python] 덕 타이핑"
 categories: python
 ---
 
-1. this unordered seed list will be replaced by toc as unordered list
+* this unordered seed list will be replaced by toc as unordered list
 {:toc}
 
 ## 덕 타이핑 (Duck Typing)

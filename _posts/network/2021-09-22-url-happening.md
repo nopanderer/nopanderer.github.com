@@ -4,7 +4,7 @@ title: "[네트워크] URL 입력 시 일어나는 일"
 categories: network
 ---
 
-1. this unordered seed list will be replaced by toc as unordered list
+* this unordered seed list will be replaced by toc as unordered list
 {:toc}
 
 ## 1. URL 파싱

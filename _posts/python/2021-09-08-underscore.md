@@ -4,7 +4,7 @@ title: "[Python] 언더스코어"
 categories: python
 ---
 
-1. this unordered seed list will be replaced by toc as unordered list
+* this unordered seed list will be replaced by toc as unordered list
 {:toc}
 
 ## 언더스코어

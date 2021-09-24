@@ -9,7 +9,7 @@ categories: kubernetes
 
 쿠버네티스 라이프사이클 에 대해 알아봅시다.
 
-0. this unordered seed list will be replaced by toc as unordered list
+* this unordered seed list will be replaced by toc as unordered list
 {:toc}
 
 ## 롤링 업데이트와 롤백

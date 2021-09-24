@@ -4,7 +4,7 @@ title: "[Python] 버전 별 새로운 기능"
 categories: python
 ---
 
-1. this unordered seed list will be replaced by toc as unordered list
+* this unordered seed list will be replaced by toc as unordered list
 {:toc}
 
 ## Python 3.6

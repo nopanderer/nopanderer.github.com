@@ -4,7 +4,7 @@ title: "[스파크] 설치"
 categories: data
 ---
 
-1. this unordered seed list will be replaced by toc as unordered list
+* this unordered seed list will be replaced by toc as unordered list
 {:toc}
 
 우분투 20.04 기준

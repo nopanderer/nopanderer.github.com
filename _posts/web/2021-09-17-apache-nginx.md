@@ -4,16 +4,16 @@ title: "[Web] Apache vs. Nginx"
 categories: web
 ---
 
-1. this unordered seed list will be replaced by toc as unordered list
+* this unordered seed list will be replaced by toc as unordered list
 {:toc}
 
 ## Apache
 
 - MPM (Multi Processing Module) 방식으로 클라이언트 요청을 처리
 - 프로세스/스레드 기반 구조로 동작
-	- ServerSocket 으로 요청 A가 들어오면 스레드 할당
-	- 스레드는 해당 소켓을 가지고 I/O 작업 수행
-	- ServerSocket 으로 새로운 요청 B가 들어오면 새로운 스레드 할당하고 컨텍스트 스위치 후 I/O 작업 수행
+	- ServerSocket 으로 요청 A가 들어오면 프로세스/스레드 할당
+	- 프로세스/스레드는 해당 소켓을 가지고 I/O 작업 수행
+	- ServerSocket 으로 새로운 요청 B가 들어오면 새로운 프로세스/스레드 할당하고 컨텍스트 스위치 후 I/O 작업 수행
 
 ![pcb](/assets/img/apache.png)
 

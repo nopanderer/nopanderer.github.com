@@ -9,7 +9,7 @@ categories: kubernetes
 
 쿠버네티스 클러스터 관리에 대해 알아봅시다.
 
-0. this unordered seed list will be replaced by toc as unordered list
+* this unordered seed list will be replaced by toc as unordered list
 {:toc}
 
 ## 노드에 대한 작업이 필요한 경우

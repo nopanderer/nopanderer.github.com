@@ -9,7 +9,7 @@ categories: kubernetes
 
 쿠버네티스 스케줄링에 대해 알아봅시다.
 
-0. this unordered seed list will be replaced by toc as unordered list
+* this unordered seed list will be replaced by toc as unordered list
 {:toc}
 
 ## 스케줄링 동작 방식

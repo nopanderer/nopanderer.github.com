@@ -4,7 +4,7 @@ title: "[Python] 클래스 메서드, 정적 메서드"
 categories: python
 ---
 
-1. this unordered seed list will be replaced by toc as unordered list
+* this unordered seed list will be replaced by toc as unordered list
 {:toc}
 
 ## 클래스 메서드

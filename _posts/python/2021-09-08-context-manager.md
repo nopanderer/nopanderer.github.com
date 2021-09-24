@@ -4,7 +4,7 @@ title: "[Python] 컨텍스트 매니저"
 categories: python
 ---
 
-1. this unordered seed list will be replaced by toc as unordered list
+* this unordered seed list will be replaced by toc as unordered list
 {:toc}
 
 ## 컨텍스트 매니저
