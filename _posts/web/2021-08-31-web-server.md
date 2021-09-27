@@ -33,8 +33,8 @@ categories: web
 - 웹 서버와 웹 어플리케이션 사이 인터페이스를 위한 파이썬 프레임워크
 - callable object 를 통해 웹 서버가 요청한 정보를 web app 에게 전달
 - 웹 서버는 callable object 를 통해 2가지 정보를 전달
-- http request 에 대한 정보
-- callback 함수
+  - http request 에 대한 정보
+  - callback 함수
 - 웹 앱은 http request 에 대한 정보를 가지고 biz logic 을 수행한 후에, callback function 을 통해 웹 서버에게 반환
 - WSGI middleware(실제 구현체) 로 uWSGI, gunicorn. 비동기로는 uvicorn
 - Django, Flask 등은 이미 wsgi 표준을 따르고 있어서 바로 웹 서버에 연결할 수도 있음
