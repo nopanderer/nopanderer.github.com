@@ -50,16 +50,16 @@ author:
 
 # Add links to the sidebar.
 menu:
+  - title:             PS
+    url:               /ps/
+  - title:             CS
+    url:               /cs/
   - title:             Python
     url:               /python/
   - title:             Dev
     url:               /dev/
   - title:             Web
     url:               /web/
-  - title:             Network
-    url:               /network/
-  - title:             OS
-    url:               /os/
   - title:             Data
     url:               /data/
   - title:             Linux

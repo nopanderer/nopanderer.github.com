@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "[네트워크] 전송 계층 Transport Layer"
-categories: network
+categories: cs
 ---
 
 * this unordered seed list will be replaced by toc as unordered list

@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "[OS] 인터럽트"
-categories: os
+categories: cs
 ---
 
 * this unordered seed list will be replaced by toc as unordered list

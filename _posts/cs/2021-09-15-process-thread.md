@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "[OS] Process vs Thread"
-categories: os
+categories: cs
 ---
 
 * this unordered seed list will be replaced by toc as unordered list

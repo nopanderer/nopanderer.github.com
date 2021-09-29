@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "[네트워크] URL 입력 시 일어나는 일"
-categories: network
+categories: cs
 ---
 
 * this unordered seed list will be replaced by toc as unordered list

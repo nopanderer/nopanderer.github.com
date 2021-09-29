@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "[OS] 가상 메모리"
-categories: os
+categories: cs
 ---
 
 * this unordered seed list will be replaced by toc as unordered list
