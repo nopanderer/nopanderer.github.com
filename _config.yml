@@ -66,8 +66,6 @@ menu:
     url:               /linux/
   - title:             ML
     url:               /ml/
-  - title:             MLOps
-    url:               /mlops/
   - title:             Kubernetes
     url:               /kubernetes/
   - title:             About

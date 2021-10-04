@@ -1,7 +1,7 @@
 ---
 layout: post
-title: "Katib 설치"
-categories: mlops
+title: "[MLOps] Katib 설치"
+categories: ml
 ---
 
 Katib 를 설치합시다.

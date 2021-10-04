@@ -1,7 +1,7 @@
 ---
 layout: post
-title: "Katib 예제"
-categories: mlops
+title: "[MLOps] Katib 예제"
+categories: ml
 ---
 
 Katib 를 이용해서 하이퍼 파라미터 튜닝을 합니다.
